@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panelis – AlfaB</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section style="padding:50px;">
+<h2>Admin Panelis – Ziņas</h2>
+<div id="messages"></div>
+</section>
+<script>
+// Mock dati no localStorage
+let data = JSON.parse(localStorage.getItem("messages")) || [];
+let box = document.getElementById("messages");
+data.forEach(m=>{
+let div=document.createElement("div");
+div.style.background="rgba(255,255,255,0.1)";
+div.style.padding="15px";div.style.marginBottom="10px";div.style.borderRadius="10px";
+div.innerHTML=`<h3>${m.name}</h3><p>${m.email}</p><p>${m.message}</p>`;
+box.appendChild(div);
+});
+</script>
+</body>
+</html>

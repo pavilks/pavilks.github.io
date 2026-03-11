@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlfaB – Baneru izgatavošana</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+</head>
+<body>
+
+<canvas id="bg3d"></canvas>
+
+<nav>
+<h2>AlfaB</h2>
+<div>
+<a href="#services">Pakalpojumi</a>
+<a href="#shop">Shop</a>
+<a href="#contact">Kontakti</a>
+<a href="login.html">Login</a>
+</div>
+</nav>
+
+<div class="hero">
+<h1>Baneru izgatavošana un montāža</h1>
+<p>Profesionāli risinājumi: saskaņošana, konstrukcijas, apgaismojums un izgaismoti baneri.</p>
+<button class="btn">Sazināties</button>
+</div>
+
+<section id="services">
+<h2>Pakalpojumi</h2>
+<div class="services">
+<div class="card"><h3>Saskaņošana būvvaldē</h3><p>Atbalsts dokumentu sagatavošanā un atļauju iegūšanā.</p></div>
+<div class="card"><h3>Nesošo konstrukciju izgatavošana / montāža</h3><p>Stabila un droša konstrukciju izgatavošana un uzstādīšana.</p></div>
+<div class="card"><h3>Apgaismojuma uzstādīšana nestandarta formas</h3><p>Inovatīvs apgaismojums dažādām baneru formām.</p></div>
+<div class="card"><h3>Izgaismoti baneru būri</h3><p>Efektīgi izgaismoti baneri, kas piesaista uzmanību.</p></div>
+</div>
+</section>
+
+<section id="shop">
+<h2>Veikals</h2>
+<div class="services">
+<div class="card"><h3>Pro Paket</h3><p>Premium baneru izgatavošana – 1200€</p></div>
+<div class="card"><h3>AI Palīgs</h3><p>Automātiska klientu asistēšana</p></div>
+<div class="card"><h3>UI/UX Pakete</h3><p>Dizaina konsultācijas</p></div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Sazināties</h2>
+<form id="contactForm">
+<input id="name" placeholder="Vārds">
+<input id="email" placeholder="E-pasts">
+<textarea id="message" placeholder="Ziņa"></textarea>
+<button class="btn">Nosūtīt</button>
+</form>
+</section>
+
+<div id="chat">
+<div id="chatHeader">AI Palīgs</div>
+<div id="chatMessages"></div>
+<div id="chatInput">
+<input id="msg">
+<button onclick="sendChat()">→</button>
+</div>
+</div>
+
+<footer>© 2026 AlfaB</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
