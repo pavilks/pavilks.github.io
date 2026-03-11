@@ -1,24 +1,214 @@
-body{margin:0;font-family:system-ui;overflow-x:hidden;color:white;}
-canvas#bg3d{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
-nav{display:flex;justify-content:space-between;padding:20px 10%;align-items:center;background:rgba(0,0,0,0.2);backdrop-filter:blur(10px);}
-nav a{color:white;text-decoration:none;margin-left:20px;}
-.hero{height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;}
-.hero h1{font-size:56px;margin-bottom:20px;}
-.hero p{font-size:20px;opacity:0.9;margin-bottom:40px;max-width:600px;}
-.btn{padding:14px 36px;border-radius:40px;border:none;font-size:18px;background:linear-gradient(90deg,#6366f1,#06b6d4);color:white;cursor:pointer;transition:0.3s;}
-.btn:hover{transform:scale(1.1);box-shadow:0 0 25px rgba(255,255,255,0.5);}
-section{padding:80px 10%;}
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.card{background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);padding:30px;border-radius:20px;border:1px solid rgba(255,255,255,0.2);opacity:0;transform:translateY(40px);transition:0.5s;}
-.card.show{opacity:1;transform:translateY(0);}
-.card:hover{transform:translateY(-10px);box-shadow:0 0 25px rgba(255,255,255,0.3);}
-form{max-width:500px;margin:auto;display:flex;flex-direction:column;gap:15px;}
-input,textarea{padding:12px;border-radius:8px;border:none;}
-#chat{position:fixed;bottom:20px;right:20px;width:280px;background:#1e293b;border-radius:12px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.5);}
-#chatHeader{background:#6366f1;padding:10px;}
-#chatMessages{height:180px;overflow-y:auto;padding:10px;font-size:14px;}
-#chatInput{display:flex;}
-#chatInput input{flex:1;padding:8px;border:none;}
-#chatInput button{border:none;background:#6366f1;color:white;padding:8px;cursor:pointer;}
-footer{text-align:center;padding:40px;opacity:0.7;}
-@media(max-width:768px){.hero h1{font-size:40px;}}
+body{
+margin:0;
+font-family:system-ui;
+color:white;
+overflow-x:hidden;
+background:#0f172a;
+}
+
+canvas#bg3d{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+padding:20px 10%;
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(10px);
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.hero{
+height:90vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:56px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:600px;
+opacity:0.9;
+margin-bottom:40px;
+}
+
+.btn{
+padding:14px 30px;
+border-radius:40px;
+border:none;
+font-size:18px;
+background:linear-gradient(90deg,#6366f1,#06b6d4);
+color:white;
+cursor:pointer;
+}
+
+section{
+padding:80px 10%;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:20px;
+opacity:0;
+transform:translateY(40px);
+transition:0.4s;
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+form{
+max-width:500px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input,textarea{
+padding:12px;
+border-radius:8px;
+border:none;
+}
+
+/* CHAT BUTTON */
+
+#chatButton{
+
+position:fixed;
+bottom:20px;
+right:20px;
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+
+background:linear-gradient(90deg,#6366f1,#06b6d4);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:26px;
+
+cursor:pointer;
+
+z-index:10;
+
+}
+
+/* CHAT WINDOW */
+
+#chat{
+
+position:fixed;
+bottom:90px;
+right:20px;
+
+width:280px;
+
+background:#1e293b;
+
+border-radius:12px;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:0.3s;
+
+}
+
+#chatHeader{
+background:#6366f1;
+padding:10px;
+}
+
+#chatMessages{
+height:160px;
+overflow-y:auto;
+padding:10px;
+font-size:14px;
+}
+
+#chatInput{
+display:flex;
+}
+
+#chatInput input{
+flex:1;
+padding:8px;
+border:none;
+}
+
+#chatInput button{
+background:#6366f1;
+border:none;
+color:white;
+padding:8px;
+}
+
+/* SHOW CHAT */
+
+#chatButton:hover + #chat,
+#chat:hover{
+
+opacity:1;
+pointer-events:auto;
+
+}
+
+/* WHATSAPP BUTTON */
+
+#whatsapp{
+
+position:fixed;
+
+bottom:20px;
+left:20px;
+
+width:60px;
+height:60px;
+
+background:#25D366;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:28px;
+
+text-decoration:none;
+color:white;
+
+}
