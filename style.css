@@ -187,12 +187,21 @@ padding:8px;
 
 /* SHOW CHAT */
 
-#chatButton:hover + #chat,
-#chat:hover{
+#chat{
+position:fixed;
+bottom:90px;
+right:20px;
+width:280px;
+background:#1e293b;
+border-radius:12px;
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+}
 
+#chat.open{
 opacity:1;
 pointer-events:auto;
-
 }
 
 /* WHATSAPP BUTTON */
