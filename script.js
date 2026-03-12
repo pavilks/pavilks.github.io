@@ -1,3 +1,4 @@
+alert("JS strādā")
 // GAIDĪT KAMĒR HTML IELĀDĒJAS
 document.addEventListener("DOMContentLoaded", () => {
 
