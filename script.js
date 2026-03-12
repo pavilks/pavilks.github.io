@@ -1,124 +1,195 @@
-// 🚀 Pārliecināmies, ka DOM ir ielādēts
+// GAIDĪT KAMĒR HTML IELĀDĒJAS
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ======================
-  // 3D FONA KODS (Three.js)
-  // ======================
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({canvas: document.getElementById("bg3d"), alpha:true});
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.z = 5;
+////////////////////////////
+// 3D BACKGROUND
+////////////////////////////
 
-  let geometry = new THREE.BufferGeometry();
-  let vertices = [];
-  for(let i=0; i<1200; i++){
-    vertices.push((Math.random()-0.5)*20, (Math.random()-0.5)*20, (Math.random()-0.5)*20);
-  }
-  geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
-  let material = new THREE.PointsMaterial({color: 0xffffff, size: 0.05});
-  let points = new THREE.Points(geometry, material);
-  scene.add(points);
+const canvas = document.getElementById("bg3d")
 
-  function animate(){
-    requestAnimationFrame(animate);
-    points.rotation.y += 0.0008;
-    renderer.render(scene, camera);
-  }
-  animate();
+if(canvas){
 
-  // ======================
-  // SCROLL ANIMĀCIJAS
-  // ======================
-  const cards = document.querySelectorAll(".card");
-  window.addEventListener("scroll", () => {
-    cards.forEach(card => {
-      if(card.getBoundingClientRect().top < window.innerHeight - 100){
-        card.classList.add("show");
-      }
-    });
-  });
+const scene = new THREE.Scene()
 
-  // ======================
-  // CHATBOTS
-  // ======================
-  const chatButton = document.getElementById("chatButton");
-  const chat = document.getElementById("chat");
-  const sendBtn = document.getElementById("sendBtn");
-  const msgInput = document.getElementById("msg");
-  const chatMessages = document.getElementById("chatMessages");
+const camera = new THREE.PerspectiveCamera(
+75,
+window.innerWidth / window.innerHeight,
+0.1,
+1000
+)
 
-  // Toggle čatu uz klikšķi
-  chatButton.addEventListener("click", () => {
-    chat.classList.toggle("open");
-  });
+const renderer = new THREE.WebGLRenderer({
+canvas: canvas,
+alpha: true
+})
 
-  // Čata nosūtīšana
-  sendBtn.addEventListener("click", () => {
-    const message = msgInput.value.trim();
-    if(!message) return;
+renderer.setSize(window.innerWidth, window.innerHeight)
 
-    chatMessages.innerHTML += `<div class="user">${message}</div>`;
-    msgInput.value = "";
+const geometry = new THREE.TorusKnotGeometry(10,3,100,16)
 
-    // AI loģika
-    let reply = "Varu palīdzēt ar baneru cenu, montāžu vai būvvaldes saskaņošanu.";
+const material = new THREE.MeshStandardMaterial({
+color: 0x00ffff,
+wireframe: true
+})
 
-    if(message.toLowerCase().includes("cena") || message.toLowerCase().includes("baneris")){
-      reply = "Baneru cena atkarīga no izmēra. Ievadi izmēru, piem. 4x2, lai aprēķinātu.";
-    } else if(message.match(/\d+x\d+/)){
-      let size = message.split("x");
-      let w = parseFloat(size[0]);
-      let h = parseFloat(size[1]);
-      let price = (w*h*20).toFixed(0);
-      reply = `Aptuvenā banera cena: ${price}€. Cenā nav iekļauta montāža.`;
-    } else if(message.toLowerCase().includes("montāž")){
-      reply = "Mēs veicam profesionālu baneru montāžu visā Latvijā. Cena parasti: 50€–200€ atkarībā no augstuma un konstrukcijas.";
-    } else if(message.toLowerCase().includes("būvvald")){
-      reply = "Jā, AlfaB palīdz ar reklāmas saskaņošanu būvvaldē. Sagatavojam dokumentāciju un rasējumus.";
-    } else if(message.toLowerCase().includes("kontak") || message.toLowerCase().includes("zvan")){
-      reply = `Sazinies ar mums WhatsApp: https://wa.me/37100000000`;
-    }
+const mesh = new THREE.Mesh(geometry, material)
 
-    // Parādīt AI atbildi
-    setTimeout(() => {
-      chatMessages.innerHTML += `<div class="bot">${reply}</div>`;
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 300);
-  });
+scene.add(mesh)
 
-  // Enter taustiņš nosūta ziņu
-  msgInput.addEventListener("keydown", (e) => {
-    if(e.key === "Enter") sendBtn.click();
-  });
+const light = new THREE.PointLight(0xffffff,1)
+light.position.set(50,50,50)
 
-  // ======================
-  // BANERU CENU KALKULATORS
-  // ======================
-  window.calculateBanner = function(){
-    const w = document.getElementById("width").value;
-    const h = document.getElementById("height").value;
-    const install = document.getElementById("install").value;
+scene.add(light)
 
-    if(w=="" || h==""){
-      alert("Ievadi izmērus!");
-      return;
-    }
+camera.position.z = 30
 
-    const area = w*h;
-    const basePrice = area*20;
-    const total = basePrice + Number(install);
+function animate(){
 
-    document.getElementById("result").innerHTML = "Aptuvenā cena: " + total.toFixed(0) + " €";
-  };
+requestAnimationFrame(animate)
 
-  // ======================
-  // KONTAKTFORMA
-  // ======================
-  document.getElementById("contactForm")?.addEventListener("submit", function(e){
-    e.preventDefault();
-    alert("Ziņa nosūtīta!");
-    this.reset();
-  });
+mesh.rotation.x += 0.002
+mesh.rotation.y += 0.003
 
-});
+renderer.render(scene,camera)
+
+}
+
+animate()
+
+window.addEventListener("resize",()=>{
+
+camera.aspect = window.innerWidth / window.innerHeight
+camera.updateProjectionMatrix()
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+})
+
+}
+
+////////////////////////////
+// BANNER CALCULATOR
+////////////////////////////
+
+window.calculateBanner = function(){
+
+const w = document.getElementById("width").value
+const h = document.getElementById("height").value
+const install = document.getElementById("install").value
+
+if(!w || !h){
+
+document.getElementById("result").innerText =
+"Ievadi izmērus"
+
+return
+}
+
+const pricePerM2 = 20
+
+const area = w * h
+
+const price = (area * pricePerM2) + Number(install)
+
+document.getElementById("result").innerText =
+"Aptuvenā cena: " + price + " €"
+
+}
+
+////////////////////////////
+// CHATBOT
+////////////////////////////
+
+const chatButton = document.getElementById("chatButton")
+const chat = document.getElementById("chat")
+const sendBtn = document.getElementById("sendBtn")
+const msgInput = document.getElementById("msg")
+const chatMessages = document.getElementById("chatMessages")
+
+if(chatButton){
+
+chatButton.addEventListener("click",()=>{
+
+chat.classList.toggle("open")
+
+})
+
+}
+
+////////////////////////////
+// SEND MESSAGE
+////////////////////////////
+
+function sendMessage(){
+
+const message = msgInput.value.trim()
+
+if(!message) return
+
+chatMessages.innerHTML +=
+`<div class="user">${message}</div>`
+
+msgInput.value = ""
+
+let reply =
+"Varu palīdzēt ar baneru izgatavošanu, montāžu vai cenu."
+
+const text = message.toLowerCase()
+
+if(text.includes("cena")){
+reply =
+"Baneru cena atkarīga no izmēra. Izmanto kalkulatoru lapā."
+}
+
+if(text.includes("montāža")){
+reply =
+"Piedāvājam profesionālu baneru montāžu visā Latvijā."
+}
+
+if(text.includes("kontakti")){
+reply =
+"Vari rakstīt WhatsApp vai aizpildīt kontaktformu."
+}
+
+if(text.includes("izmērs")){
+reply =
+"Populāri baneru izmēri ir 3x2m, 4x2m un 5x3m."
+}
+
+chatMessages.innerHTML +=
+`<div class="bot">${reply}</div>`
+
+chatMessages.scrollTop =
+chatMessages.scrollHeight
+
+}
+
+////////////////////////////
+// SEND BUTTON
+////////////////////////////
+
+if(sendBtn){
+
+sendBtn.addEventListener("click", sendMessage)
+
+}
+
+////////////////////////////
+// ENTER SEND
+////////////////////////////
+
+if(msgInput){
+
+msgInput.addEventListener("keydown",(e)=>{
+
+if(e.key === "Enter"){
+
+sendMessage()
+
+}
+
+})
+
+}
+
+})
