@@ -19,27 +19,29 @@
 
 <canvas id="bg3d"></canvas>
 
+<!-- NAV -->
 
 <nav>
 
 <h2>AlfaB</h2>
 
 <div>
-
 <a href="#services">Pakalpojumi</a>
+<a href="#calculator">Kalkulators</a>
 <a href="#contact">Kontakti</a>
-
 </div>
 
 </nav>
 
+
+<!-- HERO -->
 
 <section class="hero">
 
 <h1>Baneru izgatavošana un montāža</h1>
 
 <p>
-Profesionāli risinājumi no saskaņošanas līdz izgaismotiem baneriem
+Profesionāli reklāmas risinājumi no projekta līdz uzstādīšanai
 </p>
 
 <a href="#contact">
@@ -51,6 +53,7 @@ Saņemt piedāvājumu
 </section>
 
 
+<!-- SERVICES -->
 
 <section id="services">
 
@@ -58,36 +61,67 @@ Saņemt piedāvājumu
 
 <div class="services">
 
-
 <div class="card">
 <h3>Saskaņošana būvvaldē</h3>
-<p>Dokumentu sagatavošana un saskaņošana.</p>
+<p>Dokumentu sagatavošana reklāmas saskaņošanai.</p>
 </div>
-
 
 <div class="card">
-<h3>Nesošo konstrukciju izgatavošana / montāža</h3>
-<p>Drošas konstrukcijas baneriem.</p>
+<h3>Nesošo konstrukciju izgatavošana</h3>
+<p>Drošas konstrukcijas baneru montāžai.</p>
 </div>
-
 
 <div class="card">
 <h3>Nestandarta apgaismojums</h3>
-<p>Apgaismojuma risinājumi dažādām formām.</p>
+<p>Apgaismojuma risinājumi reklāmai.</p>
 </div>
-
 
 <div class="card">
 <h3>Izgaismoti baneru būri</h3>
-<p>Redzami un efektīvi reklāmas risinājumi.</p>
+<p>Efektīva un pamanāma reklāma.</p>
 </div>
-
 
 </div>
 
 </section>
 
 
+<!-- CALCULATOR -->
+
+<section id="calculator">
+
+<h2>Baneru cenu kalkulators</h2>
+
+<div class="calcBox">
+
+<label>Platums (m)</label>
+<input type="number" id="width" placeholder="piem. 3">
+
+<label>Augstums (m)</label>
+<input type="number" id="height" placeholder="piem. 2">
+
+<label>Montāža</label>
+
+<select id="install">
+
+<option value="0">Nav</option>
+<option value="80">Standarta montāža (+80€)</option>
+<option value="150">Augstuma montāža (+150€)</option>
+
+</select>
+
+<button onclick="calculateBanner()">
+Aprēķināt cenu
+</button>
+
+<h3 id="result"></h3>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
 
 <section id="contact">
 
@@ -95,11 +129,11 @@ Saņemt piedāvājumu
 
 <form id="contactForm">
 
-<input id="name" placeholder="Vārds">
+<input placeholder="Vārds">
 
-<input id="email" placeholder="E-pasts">
+<input placeholder="E-pasts">
 
-<textarea id="message" placeholder="Ziņa"></textarea>
+<textarea placeholder="Ziņa"></textarea>
 
 <button class="btn">
 Nosūtīt
@@ -110,27 +144,48 @@ Nosūtīt
 </section>
 
 
-
 <footer>
 © 2026 AlfaB
 </footer>
 
 
-
 <!-- CHAT BUTTON -->
 
-<<div id="chatButton">💬</div>
+<div id="chatButton">
+💬
+</div>
+
+
+<!-- CHAT WINDOW -->
 
 <div id="chat">
-  <div id="chatHeader">AlfaB asistents</div>
-  <div id="chatMessages">
-    <div class="bot">Sveiki 👋 Es esmu AlfaB asistents.</div>
-  </div>
-  <div id="chatInput">
-    <input id="msg" placeholder="Uzdod jautājumu...">
-    <button id="sendBtn">➤</button>
-  </div>
+
+<div id="chatHeader">
+AlfaB asistents
 </div>
+
+<div id="chatMessages">
+
+<div class="bot">
+Sveiki 👋  
+Es esmu AlfaB asistents.  
+Varu palīdzēt ar baneru cenu vai montāžu.
+</div>
+
+</div>
+
+<div id="chatInput">
+
+<input id="msg" placeholder="Uzdod jautājumu...">
+
+<button id="sendBtn">
+➤
+</button>
+
+</div>
+
+</div>
+
 
 <!-- WHATSAPP BUTTON -->
 
@@ -143,15 +198,17 @@ width="28"
 height="28"
 fill="white">
 
-<path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L0 32l8.5-2.3c2.2 1.2 4.7 1.8 7.5 1.8 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.4 0-4.7-.6-6.8-1.8l-.5-.3-5 1.4 1.3-4.9-.3-.5c-1.3-2.1-2-4.6-2-7.1C2.7 8.5 8.6 2.6 16 2.6s13.3 5.9 13.3 13.3S23.4 28.9 16 28.9zm7.3-9.8c-.4-.2-2.5-1.2-2.9-1.3-.4-.1-.7-.2-1 .2-.3.4-1.1 1.3-1.4 1.6-.3.3-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.5-2.2-2.9-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7s-1-2.4-1.4-3.3c-.3-.8-.7-.7-1-.7h-.8c-.3 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.3 2.6 4 6.4 5.6.9.4 1.6.6 2.2.8.9.3 1.7.3 2.4.2.7-.1 2.5-1 2.8-2 .3-1 .3-1.8.2-2-.1-.2-.4-.3-.8-.5z"/>
+<path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L0 32l8.5-2.3c2.2 1.2 4.7 1.8 7.5 1.8 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4z"/>
 
 </svg>
 
 </a>
 
 
+<!-- JAVASCRIPT -->
 
-<script src="script.js"></script>
+<script src="script.js?v=20260312"></script>
 
 </body>
+
 </html>
