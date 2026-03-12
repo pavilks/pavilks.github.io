@@ -20,11 +20,107 @@ window.addEventListener("scroll", () => {cards.forEach(card => {if(card.getBound
 
 // AI chat
 function sendChat(){
-let input=document.getElementById("msg"); if(input.value==="") return;
-let box=document.getElementById("chatMessages");
-box.innerHTML+="<div>Tu: "+input.value+"</div>";
-box.innerHTML+="<div>AI: Paldies! Mēs drīz atbildēsim.</div>";
-input.value="";
+
+let input=document.getElementById("msg")
+
+let message=input.value.toLowerCase()
+
+if(message==="") return
+
+let box=document.getElementById("chatMessages")
+
+box.innerHTML+=`<div class="user">${message}</div>`
+
+let reply=""
+
+if(message.includes("cena") || message.includes("baneris")){
+
+reply=`Baneru cena atkarīga no izmēra.
+
+Aptuvenās cenas:
+
+1m x 1m → ~40€  
+3m x 2m → ~120€  
+5m x 3m → ~250€
+
+Vai vēlies aprēķināt precīzu cenu?
+Uzraksti izmēru (piem: 4x2).`
+
+}
+
+else if(message.match(/\d+x\d+/)){
+
+let size=message.split("x")
+
+let w=parseFloat(size[0])
+let h=parseFloat(size[1])
+
+let price=(w*h*20).toFixed(0)
+
+reply=`Aptuvenā banera cena: ${price}€.
+
+Cenā nav iekļauta montāža.
+
+Vai nepieciešama arī:
+• montāža
+• konstrukcija
+• apgaismojums?`
+
+}
+
+else if(message.includes("montāž")){
+
+reply=`Mēs veicam profesionālu baneru montāžu visā Latvijā.
+
+Montāžas cena parasti:
+50€ – 200€
+
+Atkarībā no augstuma un konstrukcijas.`
+
+}
+
+else if(message.includes("būvvald")){
+
+reply=`Jā, AlfaB palīdz ar reklāmas saskaņošanu būvvaldē.
+
+Sagatavojam:
+• dokumentāciju
+• rasējumus
+• projektu`
+
+}
+
+else if(message.includes("kontak") || message.includes("zvan")){
+
+reply=`Sazinies ar mums WhatsApp:
+
+https://wa.me/37100000000`
+
+}
+
+else{
+
+reply=`Varu palīdzēt ar:
+
+• baneru cenu
+• montāžu
+• konstrukcijām
+• reklāmas saskaņošanu
+
+Uzraksti savu jautājumu.`
+
+}
+
+setTimeout(()=>{
+
+box.innerHTML+=`<div class="bot">${reply}</div>`
+
+box.scrollTop=box.scrollHeight
+
+},500)
+
+input.value=""
+
 }
 
 // kontakt forma
