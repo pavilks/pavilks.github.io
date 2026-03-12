@@ -1,136 +1,124 @@
-// THREE.js 3D particle background
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({canvas:document.getElementById('bg3d'), alpha:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.z = 5;
-let geometry = new THREE.BufferGeometry();
-let vertices = [];
-for(let i=0;i<1500;i++){vertices.push((Math.random()-0.5)*20,(Math.random()-0.5)*20,(Math.random()-0.5)*20);}
-geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices,3));
-let material = new THREE.PointsMaterial({color:0xffffff, size:0.05});
-let points = new THREE.Points(geometry, material);
-scene.add(points);
-function animate(){requestAnimationFrame(animate);points.rotation.y += 0.001;renderer.render(scene, camera);}
-animate();
+// 🚀 Pārliecināmies, ka DOM ir ielādēts
+document.addEventListener("DOMContentLoaded", () => {
 
-// scroll animation
-const cards = document.querySelectorAll(".card");
-window.addEventListener("scroll", () => {cards.forEach(card => {if(card.getBoundingClientRect().top<window.innerHeight-100) card.classList.add("show");});});
+  // ======================
+  // 3D FONA KODS (Three.js)
+  // ======================
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({canvas: document.getElementById("bg3d"), alpha:true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.position.z = 5;
 
-// AI chat
-function sendChat(){
-
-let input=document.getElementById("msg")
-
-let message=input.value.toLowerCase()
-
-if(message==="") return
-
-let box=document.getElementById("chatMessages")
-
-box.innerHTML+=`<div class="user">${message}</div>`
-
-let reply=""
-
-if(message.includes("cena") || message.includes("baneris")){
-
-reply=`Baneru cena atkarīga no izmēra.
-
-Aptuvenās cenas:
-
-1m x 1m → ~40€  
-3m x 2m → ~120€  
-5m x 3m → ~250€
-
-Vai vēlies aprēķināt precīzu cenu?
-Uzraksti izmēru (piem: 4x2).`
-
-}
-  function toggleChat(){
-
-let chat=document.getElementById("chat")
-
-chat.classList.toggle("open")
-
+  let geometry = new THREE.BufferGeometry();
+  let vertices = [];
+  for(let i=0; i<1200; i++){
+    vertices.push((Math.random()-0.5)*20, (Math.random()-0.5)*20, (Math.random()-0.5)*20);
   }
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
+  let material = new THREE.PointsMaterial({color: 0xffffff, size: 0.05});
+  let points = new THREE.Points(geometry, material);
+  scene.add(points);
 
-else if(message.match(/\d+x\d+/)){
+  function animate(){
+    requestAnimationFrame(animate);
+    points.rotation.y += 0.0008;
+    renderer.render(scene, camera);
+  }
+  animate();
 
-let size=message.split("x")
+  // ======================
+  // SCROLL ANIMĀCIJAS
+  // ======================
+  const cards = document.querySelectorAll(".card");
+  window.addEventListener("scroll", () => {
+    cards.forEach(card => {
+      if(card.getBoundingClientRect().top < window.innerHeight - 100){
+        card.classList.add("show");
+      }
+    });
+  });
 
-let w=parseFloat(size[0])
-let h=parseFloat(size[1])
+  // ======================
+  // CHATBOTS
+  // ======================
+  const chatButton = document.getElementById("chatButton");
+  const chat = document.getElementById("chat");
+  const sendBtn = document.getElementById("sendBtn");
+  const msgInput = document.getElementById("msg");
+  const chatMessages = document.getElementById("chatMessages");
 
-let price=(w*h*20).toFixed(0)
+  // Toggle čatu uz klikšķi
+  chatButton.addEventListener("click", () => {
+    chat.classList.toggle("open");
+  });
 
-reply=`Aptuvenā banera cena: ${price}€.
+  // Čata nosūtīšana
+  sendBtn.addEventListener("click", () => {
+    const message = msgInput.value.trim();
+    if(!message) return;
 
-Cenā nav iekļauta montāža.
+    chatMessages.innerHTML += `<div class="user">${message}</div>`;
+    msgInput.value = "";
 
-Vai nepieciešama arī:
-• montāža
-• konstrukcija
-• apgaismojums?`
+    // AI loģika
+    let reply = "Varu palīdzēt ar baneru cenu, montāžu vai būvvaldes saskaņošanu.";
 
-}
+    if(message.toLowerCase().includes("cena") || message.toLowerCase().includes("baneris")){
+      reply = "Baneru cena atkarīga no izmēra. Ievadi izmēru, piem. 4x2, lai aprēķinātu.";
+    } else if(message.match(/\d+x\d+/)){
+      let size = message.split("x");
+      let w = parseFloat(size[0]);
+      let h = parseFloat(size[1]);
+      let price = (w*h*20).toFixed(0);
+      reply = `Aptuvenā banera cena: ${price}€. Cenā nav iekļauta montāža.`;
+    } else if(message.toLowerCase().includes("montāž")){
+      reply = "Mēs veicam profesionālu baneru montāžu visā Latvijā. Cena parasti: 50€–200€ atkarībā no augstuma un konstrukcijas.";
+    } else if(message.toLowerCase().includes("būvvald")){
+      reply = "Jā, AlfaB palīdz ar reklāmas saskaņošanu būvvaldē. Sagatavojam dokumentāciju un rasējumus.";
+    } else if(message.toLowerCase().includes("kontak") || message.toLowerCase().includes("zvan")){
+      reply = `Sazinies ar mums WhatsApp: https://wa.me/37100000000`;
+    }
 
-else if(message.includes("montāž")){
+    // Parādīt AI atbildi
+    setTimeout(() => {
+      chatMessages.innerHTML += `<div class="bot">${reply}</div>`;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 300);
+  });
 
-reply=`Mēs veicam profesionālu baneru montāžu visā Latvijā.
+  // Enter taustiņš nosūta ziņu
+  msgInput.addEventListener("keydown", (e) => {
+    if(e.key === "Enter") sendBtn.click();
+  });
 
-Montāžas cena parasti:
-50€ – 200€
+  // ======================
+  // BANERU CENU KALKULATORS
+  // ======================
+  window.calculateBanner = function(){
+    const w = document.getElementById("width").value;
+    const h = document.getElementById("height").value;
+    const install = document.getElementById("install").value;
 
-Atkarībā no augstuma un konstrukcijas.`
+    if(w=="" || h==""){
+      alert("Ievadi izmērus!");
+      return;
+    }
 
-}
+    const area = w*h;
+    const basePrice = area*20;
+    const total = basePrice + Number(install);
 
-else if(message.includes("būvvald")){
+    document.getElementById("result").innerHTML = "Aptuvenā cena: " + total.toFixed(0) + " €";
+  };
 
-reply=`Jā, AlfaB palīdz ar reklāmas saskaņošanu būvvaldē.
+  // ======================
+  // KONTAKTFORMA
+  // ======================
+  document.getElementById("contactForm")?.addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Ziņa nosūtīta!");
+    this.reset();
+  });
 
-Sagatavojam:
-• dokumentāciju
-• rasējumus
-• projektu`
-
-}
-
-else if(message.includes("kontak") || message.includes("zvan")){
-
-reply=`Sazinies ar mums WhatsApp:
-
-https://wa.me/37100000000`
-
-}
-
-else{
-
-reply=`Varu palīdzēt ar:
-
-• baneru cenu
-• montāžu
-• konstrukcijām
-• reklāmas saskaņošanu
-
-Uzraksti savu jautājumu.`
-
-}
-
-setTimeout(()=>{
-
-box.innerHTML+=`<div class="bot">${reply}</div>`
-
-box.scrollTop=box.scrollHeight
-
-},500)
-
-input.value=""
-
-}
-
-// kontakt forma
-document.getElementById("contactForm").addEventListener("submit", function(e){
-e.preventDefault(); alert("Ziņa nosūtīta! Mēs sazināsimies drīz."); this.reset();
 });
