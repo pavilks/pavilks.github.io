@@ -47,6 +47,13 @@ Vai vēlies aprēķināt precīzu cenu?
 Uzraksti izmēru (piem: 4x2).`
 
 }
+  function toggleChat(){
+
+let chat=document.getElementById("chat")
+
+chat.classList.toggle("open")
+
+  }
 
 else if(message.match(/\d+x\d+/)){
 
