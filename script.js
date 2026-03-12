@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
 ////////////////////////////
 // 3D BACKGROUND
 ////////////////////////////
-
 const canvas = document.getElementById("bg3d")
 
 if(canvas){
