@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   const canvas = document.getElementById("bg3d");
   if(canvas && typeof THREE !== "undefined"){
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -19,20 +21,19 @@ document.addEventListener("DOMContentLoaded", () => {
     light.position.set(20,20,20);
     scene.add(light);
 
-    // SIMPLE 3D BANNERS
-    const banners=[];
+    // 3D BANNERS
+    const banners = [];
     for(let i=0;i<12;i++){
       const geo = new THREE.BoxGeometry(6,3,0.3);
       const mat = new THREE.MeshStandardMaterial({color:0x00ffff, metalness:0.4, roughness:0.3});
-      const mesh = new THREE.Mesh(geo,mat);
-      mesh.position.x=(Math.random()-0.5)*50;
-      mesh.position.y=(Math.random()-0.5)*30;
-      mesh.position.z=(Math.random()-0.5)*40;
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.x = (Math.random()-0.5)*50;
+      mesh.position.y = (Math.random()-0.5)*30;
+      mesh.position.z = (Math.random()-0.5)*40;
       scene.add(mesh);
       banners.push(mesh);
     }
 
-    // ANIMATION
     function animate(){
       requestAnimationFrame(animate);
       banners.forEach(b=>{
@@ -43,11 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     animate();
 
-    // RESIZE
     window.addEventListener("resize",()=>{
       camera.aspect = window.innerWidth/window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth,window.innerHeight);
     });
   }
+
 });
