@@ -190,6 +190,47 @@ border-radius:6px;
 border:none;
 
 }
+/*__-------wathsup*/
+
+/* WHATSAPP FLOAT BUTTON */
+
+.whatsapp-button{
+
+position:fixed !important;
+
+bottom:20px;
+right:20px;
+
+width:60px;
+height:60px;
+
+background:#25D366;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+
+z-index:9999;
+
+}
+
+.whatsapp-button img{
+
+width:32px;
+height:32px;
+
+}
+
+.whatsapp-button:hover{
+
+transform:scale(1.1);
+
+}
+
 
 
 /* ===================================
