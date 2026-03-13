@@ -1,4 +1,6 @@
-/* r01 – GLOBAL RESET */
+/* r01 – NAVIGĀCIJA */
+
+/* Global reset */
 *{
   margin:0;
   padding:0;
@@ -14,18 +16,7 @@ html, body{
   overflow-x:hidden;
 }
 
-/* 3D BACKGROUND */
-#bg3d{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:-1;
-  pointer-events:none;
-}
-
-/* NAVIGATION */
+/* NAV */
 nav{
   position:fixed;
   top:0;
@@ -59,7 +50,7 @@ nav{
   color:#00ffff;
 }
 
-/* RESPONSIVE */
+/* Responsive */
 @media (max-width:768px){
   nav{
     flex-direction:column;
@@ -70,6 +61,6 @@ nav{
   }
   .nav-links a{
     margin-left:0;
-    margin-right:15px;
+    margin-bottom:10px;
   }
 }
