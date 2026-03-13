@@ -124,6 +124,7 @@ cursor:pointer;
 #chatButton{
 
 position:fixed;
+
 bottom:20px;
 right:20px;
 
@@ -131,7 +132,6 @@ width:60px;
 height:60px;
 
 background:#00ffff;
-color:black;
 
 display:flex;
 align-items:center;
@@ -139,7 +139,7 @@ justify-content:center;
 
 border-radius:50%;
 
-font-size:28px;
+font-size:26px;
 
 cursor:pointer;
 
@@ -150,61 +150,58 @@ z-index:100;
 #chat{
 
 position:fixed;
+
 bottom:90px;
 right:20px;
 
 width:300px;
-height:380px;
+height:350px;
 
 background:#111;
 
-border-radius:10px;
-
 display:none;
+
 flex-direction:column;
 
-z-index:100;
+border-radius:10px;
 
 }
 
 #chat.open{
+
 display:flex;
+
 }
 
 #chatMessages{
 
 flex:1;
-overflow-y:auto;
+
+overflow:auto;
+
 padding:10px;
 
 }
 
-.user{
+.chatInput{
 
-text-align:right;
-margin-bottom:5px;
-
-}
-
-.bot{
-
-text-align:left;
-margin-bottom:5px;
-color:#00ffff;
+display:flex;
 
 }
 
-#msg{
+.chatInput input{
+
+flex:1;
+
+padding:10px;
 
 border:none;
-padding:10px;
-width:70%;
 
 }
 
-#sendBtn{
+.chatInput button{
 
-width:30%;
+width:80px;
 
 }
 
