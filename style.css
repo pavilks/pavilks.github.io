@@ -190,48 +190,69 @@ border-radius:6px;
 border:none;
 
 }
-/*__-------wathsup*/
-
 /* WHATSAPP FLOAT BUTTON */
 
-.whatsapp-button{
+#whatsappButton{
 
-position:fixed !important;
+position:fixed;
 
 bottom:20px;
-right:20px;
+left:20px;
 
 width:60px;
 height:60px;
+
+z-index:1000;
+
+}
+
+#whatsappButton a{
+
+display:flex;
+
+width:100%;
+height:100%;
 
 background:#25D366;
 
 border-radius:50%;
 
-display:flex;
 align-items:center;
 justify-content:center;
 
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+box-shadow:0 4px 12px rgba(0,0,0,0.4);
 
-z-index:9999;
+transition:0.2s;
 
 }
 
-.whatsapp-button img{
+#whatsappButton img{
 
 width:32px;
 height:32px;
 
 }
 
-.whatsapp-button:hover{
+#whatsappButton a:hover{
 
 transform:scale(1.1);
 
 }
 
+@media (max-width:768px){
 
+#whatsappButton{
+
+bottom:18px;
+left:18px;
+
+width:55px;
+height:55px;
+
+
+}
+
+}
 
 /* ===================================
 CHATBOT
