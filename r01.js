@@ -1,4 +1,4 @@
-alert("JS strādā")
+
 
 
 document.addEventListener("DOMContentLoaded", function(){
