@@ -1,3 +1,6 @@
+alert("JS strādā")
+
+
 document.addEventListener("DOMContentLoaded", function(){
 
 const canvas = document.getElementById("bg3d")
