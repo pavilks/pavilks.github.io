@@ -23,33 +23,47 @@ body{
 
 /* HEADER */
 header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  background:rgba(0,0,0,0.7);
-  z-index:10;
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:15px 30px;
+
+background:rgba(0,0,0,0.7);
+
+z-index:10;
+
 }
 
+/* LOGO */
+
 .logo{
-  font-size:22px;
-  font-weight:bold;
-  color:#00ffff;
+font-size:22px;
+font-weight:bold;
+color:#00ffff;
+flex-shrink:0;
+}
+
+/* NAV */
+
+nav{
+display:flex;
+align-items:center;
+gap:20px;
 }
 
 nav a{
-  margin-left:20px;
-  color:white;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-nav a:hover{
-  color:#00ffff;
+color:white;
+text-decoration:none;
+font-size:16px;
+white-space:nowrap;
 }
 
 /* MOBILE */
