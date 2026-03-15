@@ -54,7 +54,12 @@ nav a:hover{
 
 /* MOBILE */
 @media (max-width:768px){
-  nav a{
-    margin-left:10px;
-  }
+nav a{
+  margin-left:20px;
+  font-size:15px;
+  white-space:nowrap;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
 }
+
