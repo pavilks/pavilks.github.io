@@ -1,43 +1,60 @@
-header{
-
-position:fixed;
-top:0;
-left:0;
-
-width:100%;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:15px 30px;
-
-background:rgba(0,0,0,0.7);
-
-z-index:10;
-
+/* r01 – GLOBAL RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* LOGO */
+body{
+  font-family:Arial, sans-serif;
+  background:#000;
+  color:white;
+}
+
+/* 3D CANVAS */
+#bg3d{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:rgba(0,0,0,0.7);
+  z-index:10;
+}
 
 .logo{
-font-size:22px;
-font-weight:bold;
-color:#00ffff;
-flex-shrink:0;
-}
-
-/* NAV */
-
-nav{
-display:flex;
-align-items:center;
-gap:20px;
+  font-size:22px;
+  font-weight:bold;
+  color:#00ffff;
 }
 
 nav a{
-color:white;
-text-decoration:none;
-font-size:16px;
-white-space:nowrap;
+  margin-left:20px;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#00ffff;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  nav a{
+    margin-left:10px;
+  }
 }
